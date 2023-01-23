@@ -10,10 +10,8 @@
     <packaging>jar</packaging>
 
     <properties>
-        <java.version>11</java.version>
-        <vaadin.version>23.3.4</vaadin.version>
-        <!-- this parameter is needed as spring-boot bom overwrites it -->
-        <selenium.version>4.5.3</selenium.version>
+        <java.version>8</java.version>
+        <vaadin.version>21.0.1</vaadin.version>
     </properties>
 
     <parent>
@@ -91,7 +89,6 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -188,7 +185,7 @@
                     <plugin>
                         <groupId>com.vaadin</groupId>
                         <artifactId>vaadin-maven-plugin</artifactId>
-                        <version>${vaadin.version}</version>
+                        <version>21.0.1</version>
                         <executions>
                             <execution>
                                 <goals>
