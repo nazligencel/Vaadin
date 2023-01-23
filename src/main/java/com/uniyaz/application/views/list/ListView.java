@@ -1,6 +1,7 @@
 package com.uniyaz.application.views.list;
 
 import com.uniyaz.application.data.entity.Contact;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -10,19 +11,42 @@ import com.vaadin.flow.data.value.ValueChangeMode;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 
+import java.util.Collections;
+
 @PageTitle("list")
 @Route(value = "")
 public class ListView extends VerticalLayout {
 
     Grid<Contact> grid = new Grid<>(Contact.class);
     TextField filterText = new TextField();
+    ContactForm contactForm;
 
     public ListView() {
         addClassName("list-view");
         setSizeFull();
         configureGrid();
+        configureForm();
 
-        add(getToolbar(), grid);
+        add(
+                getToolbar(),
+                getContent()
+
+        );
+    }
+
+    private Component getContent() {
+     HorizontalLayout content =new HorizontalLayout(grid,contactForm);
+     content.setFlexGrow(2,grid);
+     content.setFlexGrow(1,contactForm);
+     content.addClassName("content");
+     content.setSizeFull();
+
+     return content;
+    }
+
+    private void configureForm() {
+        contactForm=new ContactForm(Collections.emptyList(),Collections.emptyList());
+        contactForm.setWidth("30em");
     }
 
     private void configureGrid() {
